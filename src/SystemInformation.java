@@ -1,10 +1,8 @@
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
-
 import com.sun.management.OperatingSystemMXBean;
-
-import javax.management.MBeanServerConnection;
+import java.nio.file.FileStore;
 
 public class SystemInformation {
     public long startTime;
@@ -15,6 +13,10 @@ public class SystemInformation {
     public OperatingSystemMXBean operatingSystemMXBean =
             (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
     public ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+    private java.nio.file.FileStore FileStore;
+    public FileStore fileStore= FileStore;
+    /**
+     * This contructer  helps to */
 
     public SystemInformation() throws IOException {
         this.startTime = System.currentTimeMillis();
@@ -74,6 +76,11 @@ public class SystemInformation {
         }
         return (long) (nano / 1E6);
     }
+   /* public long JavaSystemDiskSpace() throws IOException {
+        long totalSpace = fileStore.getTotalSpace();
+        long unusableSpace = fileStore.getUnallocatedSpace();
+        return totalSpace-unusableSpace;
+    }*/
 
 
 }

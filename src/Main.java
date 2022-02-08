@@ -23,6 +23,6 @@ public class Main {
         System.out.println(systemInformation.JavaElapsedTime());
         System.out.println("test ");
 
-        System.out.println(systemInformation.JavaProcessCpuTime());
+        //System.out.println(systemInformation.JavaSystemDiskSpace());
     }}
 
