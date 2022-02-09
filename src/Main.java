@@ -8,9 +8,6 @@ public class Main {
 
 /**
  * <h1>Java program performances</h1>
- * @author Samah KANSAB
- * @version 1.0
- * @since 2022.02.09
  * This program is to get Java program performances : Cpu usage, Memory usage, Disk usage, execution time
  * Used Libraries:
  * @see  OperatingSystemMXBean
