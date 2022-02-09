@@ -16,11 +16,19 @@ public class SystemInformation {
     private java.nio.file.FileStore FileStore;
     public FileStore fileStore= FileStore;
     /**
-     * This contructer  helps to */
+     * This constructor is to instantiate the SystemInformation class
+     * At the same time save the program execution start time
+     * @throws IOException  If an input or output exception occurred
+     * */
 
     public SystemInformation() throws IOException {
         this.startTime = System.currentTimeMillis();
     }
+
+    /**
+     * @param bytes
+     * @return bytes transformed to larger units
+     */
 
     public static long bytesTokilobytes(long bytes) {
         return bytes / KILOBYTE;
@@ -33,11 +41,21 @@ public class SystemInformation {
     public static long bytesToGegabytes(long bytes) {
         return bytes / GEGABYTE;
     }
+    /**
+     * Use: startTime
+     * Get: EndTime
+     * @return the ElapsedTime
+     * */
 
     public long JavaElapsedTime() {
         this.endTime = System.currentTimeMillis();
         return this.endTime - this.startTime;
     }
+
+    /**
+     * Get: totalMemory, freeMemory
+     * @return usedMemory by Megabytes
+     */
 
     public long JavaMemoryUsageMB() {
         // Get the Java runtime
@@ -49,6 +67,10 @@ public class SystemInformation {
         return bytesToMegabytes(memory);
 
     }
+    /**
+     * Get: totalMemory, freeMemory
+     * @return usedMemory by Gegabytes
+     */
 
     public long JavaMemoryUsageGB() {
         // Get the Java runtime
@@ -60,13 +82,25 @@ public class SystemInformation {
         return bytesToGegabytes(memory);
     }
 
+    /**
+     * @return the "recent cpu usage" for the whole system
+     */
+
     public long JavaSystemCpuLoad() {
         return (long) this.operatingSystemMXBean.getCpuLoad();
     }
 
+    /**
+     * @return the "recent cpu usage" for the Java Virtual Machine process
+     */
+
     public long JavaSystemProcessCpuLoad() {
         return (long) this.operatingSystemMXBean.getProcessCpuLoad();
     }
+
+    /**
+     * @return the sum of the execution times of all the threads
+     */
 
     public long JavaProcessCpuTime() {
         long[] allThreadIds = threadMXBean.getAllThreadIds();
@@ -74,8 +108,14 @@ public class SystemInformation {
         for (long id : allThreadIds) {
             nano += threadMXBean.getThreadCpuTime(id);
         }
-        return (long) (nano / 1E6);
+        return (long) (nano / 1E9);
     }
+    /**
+     * Get: totalDisk, freeDisk
+     * @return usedDISK
+     */
+
+
    /* public long JavaSystemDiskSpace() throws IOException {
         long totalSpace = fileStore.getTotalSpace();
         long unusableSpace = fileStore.getUnallocatedSpace();
